@@ -2,6 +2,17 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import gettext as _gettext
+import locale
+
+translate = _gettext.translate("messages", localedir='localedir')
+gettext = translate.gettext  
+
+if sys.platform == "win64" and os.getenv("LANG") is None:
+    language, _= locale.getlocale()
+    if language:
+        os.environ["LANG"] = language
+
 
 
 def main():
